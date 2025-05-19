@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GOTCHA! YOU HAVE BEEN PHISHED!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #d3cce3, #e9e4f0);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      background-color: #fffbe6;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .emoji {
+      font-size: 60px;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    h1 {
+      color: #e74c3c;
+      font-size: 2em;
+    }
+
+    h2 {
+      color: #d35400;
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    p {
+      font-size: 1em;
+      color: #333;
+      margin: 20px 0;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: #9b59b6;
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+      border-radius: 10px;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #8e44ad;
+    }
+
+    /* Emoji Rain (Warning Sign) */
+    .emoji-drop {
+      position: fixed;
+      top: -50px;
+      font-size: 30px;
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      0% {
+        top: -50px;
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Falling ⚠️ Emojis -->
+  <script>
+    const emojiCount = 30;
+    for (let i = 0; i < emojiCount; i++) {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji-drop");
+      emoji.style.left = Math.random() * 100 + "vw";
+      emoji.style.animationDelay = Math.random() * 5 + "s";
+      emoji.textContent = "⚠️";
+      document.body.appendChild(emoji);
+    }
+  </script>
+
+  <div class="container">
+    <div class="emoji">🤖</div>
+    <img src="https://media.giphy.com/media/dvSOBQvU3Q1TqKPwBC/giphy.gif" alt="Surprised man with laptop">
+    <h1>GOTCHA! YOU HAVE BEEN PHISHED!</h1>
+    <h2>⚠️🐟 Don't click on any random and suspicious-looking URLs! 🤖</h2>
+    <p>This was part of a phishing awareness activity. Stay alert!</p>
+    <a class="button" href="https://docs.google.com/forms/d/e/https://forms.gle/uyKVGiU9AWwCKfAA8/viewform" target="_blank">Oops! I Clicked 😅</a>
+  </div>
+</body>
+</html>
