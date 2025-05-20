@@ -3,115 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GOTCHA! YOU HAVE BEEN PHISHED!</title>
+  <title>You've Been Phished!</title>
   <style>
     body {
+      background: linear-gradient(to right, #e0c3fc, #8ec5fc);
       margin: 0;
-      padding: 0;
-      background: linear-gradient(to right, #d3cce3, #e9e4f0);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: 60px auto;
-      background-color: #fffbe6;
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      font-family: Arial, sans-serif;
       text-align: center;
+      padding: 20px;
+    }
+    .container {
+      background-color: #fff8e1;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 40px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
       position: relative;
-      z-index: 2;
     }
-
     .emoji {
-      font-size: 60px;
+      font-size: 3rem;
     }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
-
     h1 {
-      color: #e74c3c;
+      color: #e53935;
       font-size: 2em;
     }
-
-    h2 {
-      color: #d35400;
-      font-size: 1.2em;
+    p {
+      color: #333;
+      font-size: 1em;
       margin-top: 10px;
     }
-
-    p {
-      font-size: 1em;
-      color: #333;
-      margin: 20px 0;
-    }
-
     .button {
-      display: inline-block;
-      padding: 12px 30px;
-      background-color: #9b59b6;
+      background-color: #d500f9;
       color: white;
-      text-decoration: none;
-      font-size: 1em;
-      border-radius: 10px;
+      padding: 10px 20px;
       margin-top: 20px;
+      text-decoration: none;
+      border-radius: 25px;
+      display: inline-block;
+      font-size: 1em;
       transition: background-color 0.3s ease;
     }
-
     .button:hover {
-      background-color: #8e44ad;
+      background-color: #aa00ff;
     }
-
-    /* Emoji Rain (Warning Sign) */
-    .emoji-drop {
-      position: fixed;
-      top: -50px;
-      font-size: 30px;
-      animation: fall 5s linear infinite;
-      opacity: 0.8;
-      z-index: 1;
-    }
-
-    @keyframes fall {
-      0% {
-        top: -50px;
-        opacity: 1;
-      }
-      100% {
-        top: 100%;
-        opacity: 0;
-      }
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Warning_icon.svg/1024px-Warning_icon.svg.png');
+      background-repeat: repeat;
+      background-size: 50px;
+      opacity: 0.1;
+      z-index: -1;
     }
   </style>
 </head>
 <body>
-  <!-- Falling ⚠️ Emojis -->
-  <script>
-    const emojiCount = 30;
-    for (let i = 0; i < emojiCount; i++) {
-      const emoji = document.createElement("div");
-      emoji.classList.add("emoji-drop");
-      emoji.style.left = Math.random() * 100 + "vw";
-      emoji.style.animationDelay = Math.random() * 5 + "s";
-      emoji.textContent = "⚠️";
-      document.body.appendChild(emoji);
-    }
-  </script>
-
+  <div class="confetti"></div>
   <div class="container">
-    <div class="emoji">🤖</div>
-    <img src="https://media.giphy.com/media/dvSOBQvU3Q1TqKPwBC/giphy.gif" alt="Surprised man with laptop">
+    <div class="emoji">⚠️😬⚠️</div>
+    <img src="https://media.tenor.com/JQK3K6oI_0cAAAAC/hacker-computer.gif" alt="Hacker typing on computer" width="100%" />
     <h1>GOTCHA! YOU HAVE BEEN PHISHED!</h1>
-    <h2>⚠️🐟 Don't click on any random and suspicious-looking URLs! 🤖</h2>
-    <p>This was part of a phishing awareness activity. Stay alert!</p>
-    <a class="button" href="https://docs.google.com/forms/d/e/https://forms.gle/uyKVGiU9AWwCKfAA8/viewform" target="_blank">Oops! I Clicked 😅</a>
+    <p>🚨 Don't click on any random and suspicious-looking URLs! 🔗🐟</p>
+    <a class="button" href="https://forms.gle/G81gDVwpEaYwgJDBA" target="_blank">Oops! I Clicked 😅</a>
   </div>
 </body>
 </html>
