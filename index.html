@@ -10,8 +10,8 @@
       margin: 0;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 20px;
       overflow-x: hidden;
+      overflow-y: hidden;
     }
     .container {
       background-color: #fff8e1;
@@ -22,9 +22,6 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
       position: relative;
       z-index: 1;
-    }
-    .emoji {
-      font-size: 3rem;
     }
     h1 {
       color: #e53935;
@@ -49,7 +46,17 @@
     .button:hover {
       background-color: #aa00ff;
     }
-    canvas.confetti-canvas {
+    .emoji {
+      font-size: 2rem;
+    }
+    .gif-container img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+    }
+    .confetti {
       position: fixed;
       top: 0;
       left: 0;
@@ -58,61 +65,47 @@
       height: 100%;
       z-index: 0;
     }
+    .confetti span {
+      position: absolute;
+      font-size: 30px;
+      animation: fall 5s linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
   </style>
 </head>
 <body>
-  <canvas class="confetti-canvas"></canvas>
+  <div class="confetti" id="confetti"></div>
 
   <div class="container">
     <div class="emoji">⚠️😬⚠️</div>
-    <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="Cybersecurity Hacker" width="100%">
+    <div class="gif-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Cyber_Security_Animated_Padlock.gif/480px-Cyber_Security_Animated_Padlock.gif" alt="Security Alert GIF">
+    </div>
     <h1>GOTCHA! YOU HAVE BEEN PHISHED!</h1>
     <p>🚨 Don't click on any random and suspicious-looking URLs! 🔗🐟</p>
     <a class="button" href="https://forms.gle/mPvu19bdJwK5MJH9A" target="_blank">Oops! I Clicked 😅</a>
   </div>
 
   <script>
-    // Simple confetti using emojis (⚠️)
-    const canvas = document.querySelector('.confetti-canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const confettiContainer = document.getElementById("confetti");
 
-    const warnings = [];
+    function createWarningEmoji() {
+      const span = document.createElement("span");
+      span.textContent = "⚠️";
+      span.style.left = Math.random() * 100 + "vw";
+      span.style.animationDuration = 3 + Math.random() * 2 + "s";
+      confettiContainer.appendChild(span);
 
-    for (let i = 0; i < 30; i++) {
-      warnings.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: 24 + Math.random() * 12,
-        speed: 1 + Math.random() * 2,
-        angle: Math.random() * 2 * Math.PI
-      });
+      setTimeout(() => {
+        span.remove();
+      }, 5000);
     }
 
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.font = "bold 30px Arial";
-      for (let i = 0; i < warnings.length; i++) {
-        const w = warnings[i];
-        ctx.save();
-        ctx.translate(w.x, w.y);
-        ctx.rotate(w.angle);
-        ctx.fillText("⚠️", 0, 0);
-        ctx.restore();
-
-        w.y += w.speed;
-        w.angle += 0.01;
-
-        if (w.y > canvas.height) {
-          w.y = -30;
-          w.x = Math.random() * canvas.width;
-        }
-      }
-      requestAnimationFrame(draw);
-    }
-
-    draw();
+    setInterval(createWarningEmoji, 200);
   </script>
 </body>
 </html>
+
