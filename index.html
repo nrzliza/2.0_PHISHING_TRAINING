@@ -11,6 +11,7 @@
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
+      overflow-x: hidden;
     }
     .container {
       background-color: #fff8e1;
@@ -20,6 +21,7 @@
       margin: 40px auto;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
       position: relative;
+      z-index: 1;
     }
     .emoji {
       font-size: 3rem;
@@ -47,28 +49,70 @@
     .button:hover {
       background-color: #aa00ff;
     }
-    .confetti {
-      position: absolute;
+    canvas.confetti-canvas {
+      position: fixed;
       top: 0;
       left: 0;
+      pointer-events: none;
       width: 100%;
       height: 100%;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Warning_icon.svg/1024px-Warning_icon.svg.png');
-      background-repeat: repeat;
-      background-size: 50px;
-      opacity: 0.1;
-      z-index: -1;
+      z-index: 0;
     }
   </style>
 </head>
 <body>
-  <div class="confetti"></div>
+  <canvas class="confetti-canvas"></canvas>
+
   <div class="container">
     <div class="emoji">⚠️😬⚠️</div>
-    <img src="https://media.tenor.com/JQK3K6oI_0cAAAAC/hacker-computer.gif" alt="Hacker typing on computer" width="100%" />
+    <img src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" alt="Cybersecurity Hacker" width="100%">
     <h1>GOTCHA! YOU HAVE BEEN PHISHED!</h1>
     <p>🚨 Don't click on any random and suspicious-looking URLs! 🔗🐟</p>
-    <a class="button" href="https://forms.gle/G81gDVwpEaYwgJDBA" target="_blank">Oops! I Clicked 😅</a>
+    <a class="button" href="https://forms.gle/mPvu19bdJwK5MJH9A" target="_blank">Oops! I Clicked 😅</a>
   </div>
+
+  <script>
+    // Simple confetti using emojis (⚠️)
+    const canvas = document.querySelector('.confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const warnings = [];
+
+    for (let i = 0; i < 30; i++) {
+      warnings.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: 24 + Math.random() * 12,
+        speed: 1 + Math.random() * 2,
+        angle: Math.random() * 2 * Math.PI
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = "bold 30px Arial";
+      for (let i = 0; i < warnings.length; i++) {
+        const w = warnings[i];
+        ctx.save();
+        ctx.translate(w.x, w.y);
+        ctx.rotate(w.angle);
+        ctx.fillText("⚠️", 0, 0);
+        ctx.restore();
+
+        w.y += w.speed;
+        w.angle += 0.01;
+
+        if (w.y > canvas.height) {
+          w.y = -30;
+          w.x = Math.random() * canvas.width;
+        }
+      }
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
 </body>
 </html>
